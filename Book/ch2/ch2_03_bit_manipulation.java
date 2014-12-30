@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Stack;
 
 // note: for example usage of BitSet, see ch5_06_primes.java
 

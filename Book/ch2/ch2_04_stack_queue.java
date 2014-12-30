@@ -1,14 +1,17 @@
-import java.util.*;
+import java.util.Stack;
+import java.util.Queue;
+import java.util.Deque;
+import java.util.LinkedList;
 
 class ch2_04_stack_queue {
   public static void main(String[] args) {
-    Stack<Character> s = new Stack<Character>();
+    Stack<Character> s = new Stack<Character>();    // pop(), push(), peek()
 
     // Queue is abstract, must be instantiated with LinkedList
     // (special case for Java Queue)
-    Queue<Character> q = new LinkedList<Character>();
+    Queue<Character> q = new LinkedList<Character>();   // add to back of queue: offer() (unshift() in JavaScript); remove from front of queue: poll() (shift() in JavaScript)
 
-    Deque<Character> d = new LinkedList<Character>();
+    Deque<Character> d = new LinkedList<Character>();   // addFirst(), removeFirst(), addLast(), removeLast(); http://docs.oracle.com/javase/7/docs/api/java/util/Deque.html
 
     System.out.println(s.isEmpty());          // currently s is empty, true
     System.out.println("==================");
