@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Vector;
+import java.util.Collections;
 
 // This source code is not as complete as ch2_02_algorithm_collections.cpp
 
@@ -35,6 +36,8 @@ class ch2_02_algorithm_collections {
     v.add(2);
     v.add(15);
     v.add(4);
+    System.out.println(v);  // [10, 7, 2, 15, 4]
+    System.out.printf("==================\n");
 
     // sort descending with vector
     Collections.sort(v);

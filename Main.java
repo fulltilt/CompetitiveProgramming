@@ -33,7 +33,7 @@ class Main {
 
   void Begin() {
     String line;
-
+    System.out.println("here");
     while ((line = Main.ReadLn(255)) != null) {
       
     }
