@@ -56,6 +56,8 @@ class ch2_07_graph_ds {
 
     File f = new File("in_07.txt");
     Scanner sc = new Scanner(f);
+
+    // Initialize Adjacency Matrix example
     V = sc.nextInt(); // we must know this size first!
                       // remember that if V is > 100, try NOT to use AdjMat!
     int[][] AdjMat = new int[V][];
@@ -70,6 +72,7 @@ class ch2_07_graph_ds {
       if (AdjMat[0][j] != 0)
         System.out.println("Edge 0-" + j + " (weight = " + AdjMat[0][j] + ")");
 
+    // Initialize Adjacency List example  
     V = sc.nextInt();
     Vector< Vector< pair < Integer, Integer > > > AdjList = new Vector< Vector< pair < Integer, Integer > > >(V);
     for (int i = 0; i < V; i++) { // for each vertex
@@ -93,6 +96,7 @@ class ch2_07_graph_ds {
       System.out.println("Edge 0-" + val.first() + " (weight = " + val.second() + ")");
     }
 
+    // Initialize Edge List example
     E = sc.nextInt();
     PriorityQueue < pair < Integer, pair < Integer, Integer > > > EdgeList = new PriorityQueue < pair < Integer, pair < Integer, Integer > > >(1, 
       new Comparator< pair < Integer, pair < Integer, Integer > > >() { // overriding the compare method
@@ -121,5 +125,6 @@ class ch2_07_graph_ds {
 }
 
 /* NOTES
-  Good example of initializing multidimensional arrays in Java and for reading input from a file using Scanner
+  Good example of initializing multidimensional arrays in Java and for reading input from a file using Scanner. It's also a good example of creating multi-dimensional Collections
+  objects with generics and iterating through them using Iterator.
 */
