@@ -1,5 +1,7 @@
 import java.util.*;
 
+/* Java's implementation of a Heap
+*/
 class pair < X, Y > { // utilizing Java "Generics"
   X _first;
   Y _second;

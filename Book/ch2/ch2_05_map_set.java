@@ -1,5 +1,10 @@
 import java.util.*;
 
+/* Balanced Binary Search Tree
+   -TreeMap and TreeSet are usually implementations of the Red-Black tree which guarantees major BST operations are done in O(log n) time
+   -TreeMap stores key/value pairs while TreeSet stores only the key. For most contest problems, we would use TreeMap instead of TreeSet as a set is only useful for
+    efficiently determining the existence of a certain key. The drawback to these classes is that it's diffiult or impossible to augment the BST
+*/
 class ch2_05_map_set {
   public static void main(String[] args) {
     // note: there are many clever usages of this set/map

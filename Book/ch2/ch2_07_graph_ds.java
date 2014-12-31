@@ -1,5 +1,9 @@
 import java.io.*;
-import java.util.*;
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Iterator;
+import java.util.Scanner;
 
 class pair < X, Y > { // utilizing Java "Generics"
   X _first;
@@ -115,3 +119,7 @@ class ch2_07_graph_ds {
     }
   }
 }
+
+/* NOTES
+  Good example of initializing multidimensional arrays in Java and for reading input from a file using Scanner
+*/
