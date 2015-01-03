@@ -1,15 +1,21 @@
+import java.io.*;
 import java.util.*;
 
-class Main { /* UVa 11450 - Wedding Shopping - Bottom Up */
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    int i, j, l, TC, M, C, K;
-    int[][] price = new int[25][25]; // price[g (<= 20)][model (<= 20)]
+class ch3_03_UVa11450_bu { /* UVa 11450 - Wedding Shopping - Bottom Up */
+  public static void main(String[] args) throws Exception {
+    File f = new File("input.txt");
+    Scanner sc = new Scanner(f);
+    int i, j, l, 
+        TC, M, C, K;  // data sets?/budget/# of garments/# of models of current garment
+
+    int[][] price = new int[25][25];              // price[g (<= 20)][model (<= 20)]
     Boolean[][] reachable = new Boolean[210][25]; // reachable table[money (<= 200)][g (<= 20)]
 
     TC = sc.nextInt();
     while (TC-- > 0) {
-      M = sc.nextInt(); C = sc.nextInt();
+      M = sc.nextInt(); 
+      C = sc.nextInt();
+
       for (i = 0; i < C; i++) {
         K = sc.nextInt();
         price[i][0] = K; // to simplify coding, we store K in price[i][0]
@@ -17,18 +23,31 @@ class Main { /* UVa 11450 - Wedding Shopping - Bottom Up */
           price[i][j] = sc.nextInt();
       }
 
+/* price[][] (note: the first column represents K)
+3 6 4  8 0 
+2 5 10 0 0 
+4 1 5  3 5 
+*/
       for (i = 0; i < 210; i++)
         for (j = 0; j < 25; j++)
           reachable[i][j] = false; // clear everything
 
+      // populate first line with the data we already have for g = 0
       for (i = 1; i <= price[0][0]; i++) // initial values
         if (M - price[0][i] >= 0)
           reachable[M - price[0][i]][0] = true; // if only using first garment g = 0
 
-      for (j = 1; j < C; j++) // for each remaining garment (note: this is written in column major)
-        for (i = 0; i < M; i++) if (reachable[i][j - 1]) // if can reach this state
-          for (l = 1; l <= price[j][0]; l++) if (i - price[j][l] >= 0) // flag the rest
-            reachable[i - price[j][l]][j] = true; // as long as it is feasible
+      for (j = 1; j < C; j++) {// for each remaining garment (note: this is written in column major)
+        for (i = 0; i < M; i++) {
+          if (reachable[i][j - 1]) { // if can reach this state
+            for (l = 1; l <= price[j][0]; l++) {
+              if (i - price[j][l] >= 0) { // flag the rest
+                reachable[i - price[j][l]][j] = true; // as long as it is feasible
+              }
+            }
+          }
+        }
+      }
 
       for (i = 0; i <= M && !reachable[i][C - 1]; i++); // the answer is in the last column
 
