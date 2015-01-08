@@ -7,7 +7,7 @@ class IntegerPair implements Comparable {
   }
 
   public int compareTo(Object o) {
-    if (!this.first().equals((IntegerPair)o).first())
+    if (!this.first().equals(((IntegerPair)o).first()))
       return this.first() - ((IntegerPair)o).first();
     else
       return this.second() - ((IntegerPair)o).second();
