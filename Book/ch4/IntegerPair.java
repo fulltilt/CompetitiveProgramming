@@ -1,5 +1,6 @@
 class IntegerPair implements Comparable {
-  Integer _first, _second;
+  Integer _first,   // destination vertex
+          _second;  // weight
 
   public IntegerPair(Integer f, Integer s) {
     _first = f;

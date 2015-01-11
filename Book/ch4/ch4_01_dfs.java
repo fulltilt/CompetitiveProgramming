@@ -9,50 +9,50 @@ public class ch4_01_dfs {
   private static final int DFS_WHITE = -1; // normal DFS
   private static final int DFS_BLACK = 1;
   private static final int DFS_GRAY = 2;
-  private static Vector < Vector < IntegerPair > > AdjList = 
-             new Vector < Vector < IntegerPair > >();
-  private static Vector < Integer > dfs_num, dfs_low, dfs_parent;
-  private static Vector < Boolean > articulation_vertex, visited;
-  private static Stack < Integer > S; // additional information for SCC
-  private static Vector < Integer > topologicalSort; // additional information for toposort
+  private static Vector <Vector <IntegerPair>> AdjList = 
+             new Vector <Vector <IntegerPair>>();
+  private static Vector <Integer> dfs_num, dfs_low, dfs_parent;
+  private static Vector <Boolean> articulation_vertex, visited;
+  private static Stack <Integer> S; // additional information for SCC
+  private static Vector <Integer> topologicalSort; // additional information for toposort
   private static int numComp, dfsNumberCounter, dfsRoot, rootChildren;
 
   private static void initDFS(int V) { // used in normal DFS
-    dfs_num = new Vector < Integer > ();
-    dfs_num.addAll(Collections.nCopies(V, DFS_WHITE));
+    dfs_num = new Vector <Integer> ();
+    dfs_num.addAll(Collections.nCopies(V, DFS_WHITE));  // add V elements of DFS_WHITE to the end of dfs_num
     numComp = 0;
   }
 
   private static void initGraphCheck(int V) {
     initDFS(V);
-    dfs_parent = new Vector < Integer > ();
+    dfs_parent = new Vector <Integer> ();
     dfs_parent.addAll(Collections.nCopies(V, 0));
     numComp = 0;
   }
 
   private static void initArticulationPointBridge(int V) {
     initGraphCheck(V);
-    dfs_low = new Vector < Integer > ();
+    dfs_low = new Vector <Integer> ();
     dfs_low.addAll(Collections.nCopies(V, 0));
-    articulation_vertex = new Vector < Boolean > ();
+    articulation_vertex = new Vector <Boolean> ();
     articulation_vertex.addAll(Collections.nCopies(V, false));
     dfsNumberCounter = 0;
   }
 
   private static void initTarjanSCC(int V) {
     initGraphCheck(V);
-    dfs_low = new Vector < Integer > ();
+    dfs_low = new Vector <Integer> ();
     dfs_low.addAll(Collections.nCopies(V, 0));
     dfsNumberCounter = 0;
     numComp = 0;
-    S = new Stack < Integer > ();
-    visited = new Vector < Boolean > ();
+    S = new Stack <Integer> ();
+    visited = new Vector <Boolean> ();
     visited.addAll(Collections.nCopies(V, false));
   }
 
   private static void initTopologicalSort(int V) {
     initDFS(V);
-    topologicalSort = new Vector < Integer > ();
+    topologicalSort = new Vector <Integer> ();
   }
 
   private static void dfs(int u) { // DFS for normal usage
@@ -61,7 +61,7 @@ public class ch4_01_dfs {
     Iterator it = AdjList.get(u).iterator();
     while (it.hasNext()) { // try all neighbors v of vertex u
       IntegerPair v = (IntegerPair)it.next();
-      if (dfs_num.get(v.first()) == DFS_WHITE) // avoid cycle
+      if (dfs_num.get(v.first()) == DFS_WHITE) // avoid cycle by making sure Vertex is unvisited
         dfs(v.first()); // v is a (neighbor, weight) pair
     }
   }
@@ -109,9 +109,9 @@ public class ch4_01_dfs {
         if (u == dfsRoot) // special case
           rootChildren++; // count children of root
         articulationPointAndBridge(v.first());
-        if (dfs_low.get(v.first()) >= dfs_num.get(u)) // for articulation point
+        if (dfs_low.get(v.first())>= dfs_num.get(u)) // for articulation point
           articulation_vertex.set(u, true); // store this information first
-        if (dfs_low.get(v.first()) > dfs_num.get(u)) // for bridge
+        if (dfs_low.get(v.first())> dfs_num.get(u)) // for bridge
           System.out.printf(" Edge (%d, %d) is a bridge\n", u, v.first());
         dfs_low.set(u, Math.min(dfs_low.get(u), dfs_low.get(v.first()))); // update dfs_low[u]
       }
@@ -232,14 +232,14 @@ public class ch4_01_dfs {
 
     V = sc.nextInt();
     AdjList.clear();
-    for (i = 0; i < V; i++) {
-      Vector < IntegerPair > Neighbor = new Vector < IntegerPair >(); // create vector of pair<int, int> 
+    for (i = 0; i <V; i++) {
+      Vector <IntegerPair> Neighbor = new Vector <IntegerPair>(); // create vector of pair<int, int> 
       AdjList.add(Neighbor); // store blank vector first
     }
 
-    for (i = 0; i < V; i++) {
+    for (i = 0; i <V; i++) {
       total_neighbors = sc.nextInt();
-      for (j = 0; j < total_neighbors; j++) {
+      for (j = 0; j <total_neighbors; j++) {
         id = sc.nextInt();
         weight = sc.nextInt();
         AdjList.get(i).add(new IntegerPair(id, weight));
@@ -248,7 +248,7 @@ public class ch4_01_dfs {
 
     initDFS(V); // call this first before running DFS
     printThis("Standard DFS Demo (the input graph must be UNDIRECTED)");
-    for (i = 0; i < V; i++) // for each vertex i in [0..V-1]
+    for (i = 0; i <V; i++) // for each vertex i in [0..V-1]
       if (dfs_num.get(i) == DFS_WHITE) { // if not visited yet
         System.out.printf("Component %d, visit:", ++numComp);
         dfs(i);
@@ -258,25 +258,25 @@ public class ch4_01_dfs {
 
     initDFS(V); // call this first before running DFS
     printThis("Flood Fill Demo (the input graph must be UNDIRECTED)");
-    for (i = 0; i < V; i++) // for each vertex i in [0..V-1], note that we use our REP macro again
+    for (i = 0; i <V; i++) // for each vertex i in [0..V-1], note that we use our REP macro again
       if (dfs_num.get(i) == DFS_WHITE) // if not visited yet
         floodfill(i, ++numComp);
-    for (i = 0; i < V; i++)
+    for (i = 0; i <V; i++)
       System.out.printf("Vertex %d has color %d\n", i, dfs_num.get(i));
 
     // make sure that the given graph is DAG
     initTopologicalSort(V);
     printThis("Topological Sort (the input graph must be DAG)");
-    for (i = 0; i < V; i++)
+    for (i = 0; i <V; i++)
       if (dfs_num.get(i) == DFS_WHITE)
         topoVisit(i);
-    for (i = topologicalSort.size() - 1; i >= 0; i--) // access from back to front
+    for (i = topologicalSort.size() - 1; i>= 0; i--) // access from back to front
       System.out.printf(" %d", topologicalSort.get(i));
     System.out.printf("\n");
 
     initGraphCheck(V);
     printThis("Graph Edges Property Check");
-    for (i = 0; i < V; i++)
+    for (i = 0; i <V; i++)
       if (dfs_num.get(i) == DFS_WHITE) {
         System.out.printf("Component %d:\n", ++numComp);
         graphCheck(i);
@@ -285,21 +285,21 @@ public class ch4_01_dfs {
     initArticulationPointBridge(V);
     printThis("Articulation Points & Bridges (the input graph must be UNDIRECTED)");
     System.out.printf("Bridges:\n");
-    for (i = 0; i < V; i++)
+    for (i = 0; i <V; i++)
       if (dfs_num.get(i) == DFS_WHITE) {
         dfsRoot = i; rootChildren = 0;
         articulationPointAndBridge(i);
-        articulation_vertex.set(dfsRoot, (rootChildren > 1)); // special case
+        articulation_vertex.set(dfsRoot, (rootChildren> 1)); // special case
       }
 
     System.out.printf("Articulation Points:\n");
-    for (i = 0; i < V; i++)
+    for (i = 0; i <V; i++)
       if (articulation_vertex.get(i))
         System.out.printf(" Vertex %d\n", i);
 
     initTarjanSCC(V);
     printThis("Strongly Connected Components (the input graph must be DIRECTED)");
-    for (i = 0; i < V; i++)
+    for (i = 0; i <V; i++)
       if (dfs_num.get(i) == DFS_WHITE)
         tarjanSCC(i);
   }
