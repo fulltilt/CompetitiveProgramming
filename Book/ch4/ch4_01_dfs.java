@@ -284,6 +284,7 @@ public class ch4_01_dfs {
 
     initArticulationPointBridge(V);
     printThis("Articulation Points & Bridges (the input graph must be UNDIRECTED)");
+//System.out.println(AdjList);
     System.out.printf("Bridges:\n");
     for (i = 0; i <V; i++)
       if (dfs_num.get(i) == DFS_WHITE) {
