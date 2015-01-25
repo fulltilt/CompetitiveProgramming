@@ -2,7 +2,8 @@ import java.util.*;
 
 class ch6_03_str_align {
   public static void main(String[] args){
-    char[] A = "ACAATCC".toCharArray(), B = "AGCATGC".toCharArray();
+    //char[] A = "ACAATCC".toCharArray(), B = "AGCATGC".toCharArray();
+    char[] A = "SATURDAY".toCharArray(), B = "SUNDAY".toCharArray();
     int[][] table = new int[20][20]; // Needleman Wunsnch's algorithm
     int i, j, n = A.length, m = B.length;
 

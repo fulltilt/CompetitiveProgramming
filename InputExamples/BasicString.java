@@ -90,8 +90,5 @@ class BasicString {
     	}
     }
     System.out.println(most + ": " + max);
-
-    // #6
-    
 	}
 }

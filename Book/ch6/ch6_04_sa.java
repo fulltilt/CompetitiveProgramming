@@ -90,6 +90,7 @@ class ch6_04_sa {
     return ans;
   } // return lower/upper bound as the first/second item of the pair, respectively
 
+  // longest repeated substring
   void LRS() {                          // print out the length and the actual LRS
     int i, idx = 0, maxLCP = 0;
 
@@ -105,6 +106,7 @@ class ch6_04_sa {
 
   int owner(int idx) { return (idx < n-m-1) ? 1 : 2; }
 
+  // longest common substring
   void LCS() {                          // print out the length and the actual LCS
     int i, j, maxLCP = 0, idx = 0;
     // not used in Java version

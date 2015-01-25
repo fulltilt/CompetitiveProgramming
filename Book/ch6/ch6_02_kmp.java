@@ -45,7 +45,7 @@ class ch6_02_kmp {
     System.out.println(P);
     System.out.println();
 
-    System.out.printf("Naive Mathing\n");
+    System.out.printf("Naive Matching\n");
     naiveMatching();
     System.out.println();
 
